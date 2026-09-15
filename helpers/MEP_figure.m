@@ -17,7 +17,7 @@ if ~isempty(muscle)
     fig_name = sprintf('%s (%s)', fig_name, muscle);
 end
 
-figure('Name', fig_name, 'Color', 'w', 'Position', [100, 100, 1100, 700]);
+figure('Name', fig_name, 'Color', 'w');
 outer = tiledlayout(2, 1, 'TileSpacing', 'compact', 'Padding', 'compact');
 
 % Panneau du haut
@@ -41,6 +41,10 @@ for c = 1:n
     xline(ax, 0, 'Color', 'r', 'LineWidth', 1.5, 'LineStyle', ':');
     if ~isempty(mep_cell{c})
         MEP_mean_fig(mep_cell{c}, colors(c, :));
+        n_mep = sum(startsWith(fieldnames(mep_cell{c}), 'MEP_'));
+        text(ax, 0.95, 0.92, sprintf('%d MEPs', n_mep), 'Units', 'normalized', ...
+            'HorizontalAlignment', 'right', 'VerticalAlignment', 'top', ...
+            'Color', dark_colors(c, :), cond_label_font{:});
     end
     box(ax, 'on')
     axis(ax, 'padded')

@@ -164,7 +164,7 @@ tl.Padding='compact'; tl.TileSpacing='compact';
 clear
 clc
 
-participant='TD02';
+participant='PIL03';
 cond={'NW','VM','CT'};
 side={'Left','Right'};
 
@@ -218,7 +218,7 @@ end
 clear
 clc
 
-participant='TD02';
+participant='PIL05';
 cond={'NW','VM','CT'};
 side={'Left','Right'};
 muscles={'TA','SOL','GM','RF','VL','ST','GMED'};
@@ -276,6 +276,7 @@ for j=1:2
         end
         set(gca,'XTick',1:numel(muscles),'XTickLabel',muscles)
         ylabel(sprintf('Synergy %d',s),"FontWeight","bold")
+        ylim([0 1])
         if s==1
             title('Muscle weightings (W)')
             legend(cond,'Location','best')
@@ -311,12 +312,12 @@ end
 clear
 clc
 
-participant='TD01';
+participant='PIL03';
 cond={'NW','VM','CT'};
 
 tms_dir=fullfile(find_subject_path(participant),'TMS');
 
-% Un sous-dossier par muscle (ex: TMS\TA\, TMS\SOL\)
+% Un sous-dossier par muscle (TMS\TA, TMS\SOL) ou condition (TMS\TA-40)
 muscle_list = dir(tms_dir);
 muscle_list = muscle_list([muscle_list.isdir] & ~ismember({muscle_list.name}, {'.', '..'}));
 muscles = {muscle_list.name};
